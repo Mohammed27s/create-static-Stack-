@@ -1,0 +1,87 @@
+
+//Create a Static Stack
+
+import java.util.Stack;
+import java.util.Scanner;
+
+public class Stataic {
+
+    public static Scanner n = new Scanner(System.in);
+    public static Stack<Integer> staticStack = new Stack<>();
+    public static Stack<Integer> junkStack = new Stack<>();
+
+
+    public static void main(String[] args ){
+
+     staticStack.setSize(10);
+     staticStack.removeAllElements();
+
+
+
+        stackPush();
+
+        System.out.println("-------------------------------------------------------------"+"\n");
+
+        stackPop();
+    }
+
+    public static void stackPush(){
+
+
+        System.out.println("Enter new client phone number to the system :  "+"\n");
+
+
+
+            for(Integer i = 0; i <= 9; i++) {
+
+                 staticStack.push(n.nextInt());
+
+               System.out.println("The Phone number been stored : "+staticStack.peek().toString());
+        }
+
+        System.out.println("The all elements in Stack : "+staticStack.toString()+"\n");
+        System.out.println("The size : "+staticStack.size());
+
+    }
+
+
+
+
+
+    public static void stackPop(){
+
+        Scanner in = new Scanner(System.in);
+
+        String inputNum;
+
+     System.out.println("Do you want to remove all phone numbers from the system ? (yes/no) "+"\n");
+     inputNum = in.nextLine();
+
+        if(inputNum.equals("yes")){
+
+            for(Integer j = 9; j >= 0; j--) {
+
+                junkStack.push(staticStack.pop());
+
+
+            }
+
+        }
+        else if(inputNum.equals("no")) {
+
+            System.out.println("The nothing been removed from the system :- ");
+
+        }
+
+        System.out.println("All phone numbers been removed : "+staticStack.toString()+" empty... ");
+
+
+
+
+
+
+    }
+
+
+
+}
