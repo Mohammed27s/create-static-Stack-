@@ -1,87 +1,73 @@
+ StaticStack stack = new StaticStack();
+    // Push some elements onto the stack
+    stack.push(10);
+    stack.push(20);
+    stack.push(30);
+    stack.push(70);
+    stack.push(60);
+    stack.push(90);
+    // System.out.println(stack);
+    stack.printStack();
+    // Pop elements from the stack
+    stack.pop();
+    stack.pop();
+    stack.pop();
+    stack.pop();
+    stack.pop();
+    stack.pop();
+    stack.pop(); // This will result in stack underflow
+}
 
-//Create a Static Stack
 
-import java.util.Stack;
-import java.util.Scanner;
+private static final int MAX_SIZE = 10;
+private int[] stackArray;
+private int top; // Index of the top element in the stack
 
-public class Stataic {
+// Constructor to initialize the stack
+public StaticStack() {
+    stackArray = new int[MAX_SIZE];
+    top = -1; // Stack is initially empty
+}
 
-    public static Scanner n = new Scanner(System.in);
-    public static Stack<Integer> staticStack = new Stack<>();
-    public static Stack<Integer> junkStack = new Stack<>();
-
-
-    public static void main(String[] args ){
-
-     staticStack.setSize(10);
-     staticStack.removeAllElements();
-
-
-
-        stackPush();
-
-        System.out.println("-------------------------------------------------------------"+"\n");
-
-        stackPop();
+// Method to push an element onto the stack
+public void push(int element) {
+    // Check for stack overflow
+    if (top == MAX_SIZE - 1) {
+        System.out.println("Stack overflow! Cannot push element: " + element);
+        return;
     }
+    // Increment top and insert the element
+    stackArray[++top] = element;
+    System.out.println("Pushed element: " + element);
+}
 
-    public static void stackPush(){
-
-
-        System.out.println("Enter new client phone number to the system :  "+"\n");
-
-
-
-            for(Integer i = 0; i <= 9; i++) {
-
-                 staticStack.push(n.nextInt());
-
-               System.out.println("The Phone number been stored : "+staticStack.peek().toString());
-        }
-
-        System.out.println("The all elements in Stack : "+staticStack.toString()+"\n");
-        System.out.println("The size : "+staticStack.size());
-
+// Method to pop an element from the stack
+public int pop() {
+    // Check for stack underflow
+    if (top == -1) {
+        System.out.println("Stack underflow! Cannot pop element.");
+        return -1; // Return a default value indicating underflow
     }
+    // Get the element at the top and decrement top
+    int element = stackArray[top--];
+    System.out.println("Popped element: " + element);
+    return element;
+}
 
+// Method to check if the stack is empty
+public boolean isEmpty() {
+    return (top == -1);
+}
 
+// Method to check if the stack is full
+public boolean isFull() {
+    return (top == MAX_SIZE - 1);
+}
 
-
-
-    public static void stackPop(){
-
-        Scanner in = new Scanner(System.in);
-
-        String inputNum;
-
-     System.out.println("Do you want to remove all phone numbers from the system ? (yes/no) "+"\n");
-     inputNum = in.nextLine();
-
-        if(inputNum.equals("yes")){
-
-            for(Integer j = 9; j >= 0; j--) {
-
-                junkStack.push(staticStack.pop());
-
-
-            }
-
-        }
-        else if(inputNum.equals("no")) {
-
-            System.out.println("The nothing been removed from the system :- ");
-
-        }
-
-        System.out.println("All phone numbers been removed : "+staticStack.toString()+" empty... ");
-
-
-
-
-
-
+public void printStack() {
+    System.out.print("Stack contents: ");
+    for (int i = 0; i <= top; i++) {
+        System.out.print(stackArray[i] + " ");
     }
-
-
-
+    System.out.println();
 }
